@@ -1,0 +1,656 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Evaluación, Diversidad y Comunicación</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        body {
+            background: linear-gradient(135deg, #1a2a6c, #2a4d69, #4b86b4);
+            color: #333;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding: 20px;
+        }
+        
+        .container {
+            max-width: 1200px;
+            width: 100%;
+            background: white;
+            border-radius: 20px;
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.3);
+            overflow: hidden;
+            position: relative;
+            margin: 20px 0;
+        }
+        
+        header {
+            background: linear-gradient(to right, #2c3e50, #3498db);
+            color: white;
+            padding: 25px 40px;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        header::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" preserveAspectRatio="none"><polygon points="0,0 100,0 100,100" fill="rgba(255,255,255,0.1)"/></svg>');
+            background-size: cover;
+        }
+        
+        .logo {
+            display: flex;
+            justify-content: center;
+            margin-bottom: 20px;
+        }
+        
+        .logo-circle {
+            width: 120px;
+            height: 120px;
+            background: linear-gradient(135deg, #3498db, #2c3e50);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border: 5px solid white;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+        }
+        
+        .logo-circle i {
+            font-size: 60px;
+            color: white;
+        }
+        
+        h1 {
+            font-size: 38px;
+            margin-bottom: 10px;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+            color: white;
+        }
+        
+        .subtitle {
+            font-size: 24px;
+            margin-bottom: 30px;
+            color: #ecf0f1;
+            font-weight: 300;
+        }
+        
+        .presenter-info {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 30px;
+            background: rgba(0, 0, 0, 0.2);
+            padding: 15px;
+            border-radius: 10px;
+            font-size: 18px;
+            flex-wrap: wrap;
+        }
+        
+        .presenter-info > div {
+            margin: 5px 10px;
+        }
+        
+        .slides-container {
+            display: flex;
+            flex-wrap: wrap;
+            padding: 30px;
+            gap: 30px;
+        }
+        
+        .slide {
+            background: white;
+            border-radius: 15px;
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+            padding: 30px;
+            flex: 1 1 400px;
+            transition: all 0.3s ease;
+            border-left: 5px solid #3498db;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .slide:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 12px 25px rgba(0, 0, 0, 0.15);
+        }
+        
+        .slide-title {
+            color: #2c3e50;
+            font-size: 28px;
+            margin-bottom: 25px;
+            padding-bottom: 15px;
+            border-bottom: 2px solid #3498db;
+            display: flex;
+            align-items: center;
+        }
+        
+        .slide-title i {
+            margin-right: 15px;
+            background: #3498db;
+            color: white;
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 24px;
+        }
+        
+        .slide-content {
+            font-size: 18px;
+            line-height: 1.7;
+        }
+        
+        .slide-content p {
+            margin-bottom: 20px;
+            color: #444;
+        }
+        
+        .slide-content ul {
+            padding-left: 30px;
+            margin: 20px 0;
+        }
+        
+        .slide-content li {
+            margin-bottom: 15px;
+            position: relative;
+        }
+        
+        .slide-content li::before {
+            content: "•";
+            color: #3498db;
+            font-weight: bold;
+            display: inline-block;
+            width: 1em;
+            margin-left: -1em;
+            font-size: 20px;
+        }
+        
+        .graphic-container {
+            display: flex;
+            justify-content: center;
+            margin: 30px 0;
+        }
+        
+        .graphic {
+            width: 100%;
+            max-width: 500px;
+            height: 250px;
+            background: linear-gradient(135deg, #e0f7fa, #b2ebf2);
+            border-radius: 10px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+            text-align: center;
+            border: 1px solid #b2ebf2;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+        }
+        
+        .graphic i {
+            font-size: 70px;
+            color: #0097a7;
+            margin-bottom: 20px;
+        }
+        
+        .graphic h3 {
+            color: #006064;
+            margin-bottom: 15px;
+        }
+        
+        .graphic p {
+            color: #00838f;
+            font-size: 16px;
+        }
+        
+        .conclusion-section {
+            background: linear-gradient(135deg, #2c3e50, #3498db);
+            color: white;
+            border-radius: 15px;
+            padding: 40px;
+            margin: 30px;
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .conclusion-section::before {
+            content: "";
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle, rgba(255,255,255,0.1) 0%, rgba(255,255,255,0) 70%);
+            transform: rotate(30deg);
+        }
+        
+        .conclusion-section h2 {
+            font-size: 36px;
+            margin-bottom: 30px;
+            text-align: center;
+            color: white;
+        }
+        
+        .conclusion-content {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 25px;
+        }
+        
+        .conclusion-card {
+            flex: 1 1 300px;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 15px;
+            padding: 25px;
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+        }
+        
+        .conclusion-card h3 {
+            font-size: 22px;
+            margin-bottom: 15px;
+            color: #f1c40f;
+            display: flex;
+            align-items: center;
+        }
+        
+        .conclusion-card h3 i {
+            margin-right: 10px;
+        }
+        
+        .conclusion-card p {
+            line-height: 1.7;
+        }
+        
+        footer {
+            background: #2c3e50;
+            color: white;
+            text-align: center;
+            padding: 20px;
+            width: 100%;
+            border-radius: 0 0 20px 20px;
+            font-size: 18px;
+        }
+        
+        .section-title {
+            text-align: center;
+            font-size: 32px;
+            color: #2c3e50;
+            margin: 30px 0 20px;
+            padding-bottom: 15px;
+            border-bottom: 2px solid #3498db;
+            width: 100%;
+        }
+        
+        @media (max-width: 768px) {
+            .slide {
+                flex: 1 1 100%;
+            }
+            
+            h1 {
+                font-size: 32px;
+            }
+            
+            .subtitle {
+                font-size: 20px;
+            }
+            
+            .slide-title {
+                font-size: 24px;
+            }
+            
+            .presenter-info {
+                flex-direction: column;
+                align-items: center;
+                text-align: center;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <div class="logo">
+                <div class="logo-circle">
+                    <i class="fas fa-graduation-cap"></i>
+                </div>
+            </div>
+            <h1>Evaluación, Diversidad y Comunicación en el Proceso de Aprendizaje</h1>
+            <div class="subtitle">Herramientas para una Educación Inclusiva y Efectiva</div>
+            <div class="presenter-info">
+                <div><i class="fas fa-user"></i> Ponente: Angel Leonardo Flores Carranza</div>
+                <div><i class="fas fa-calendar"></i> Fecha: 28 de junio de 2025</div>
+            </div>
+        </header>
+        
+        <div class="section-title">Introducción al Tema</div>
+        <div class="slides-container">
+            <!-- Introducción -->
+            <div class="slide">
+                <div class="slide-title">
+                    <i class="fas fa-star"></i> La Evaluación en el Contexto Educativo
+                </div>
+                <div class="slide-content">
+                    <ul>
+                        <li>La evaluación formativa como pilar para la mejora continua del aprendizaje</li>
+                        <li>Importancia de centrar la evaluación en el logro educativo y en las necesidades específicas de cada estudiante</li>
+                        <li>La evaluación como herramienta para mejorar la práctica docente</li>
+                    </ul>
+                    
+                    <div class="graphic-container">
+                        <div class="graphic">
+                            <i class="fas fa-sync-alt"></i>
+                            <h3>Ciclo de Mejora Continua</h3>
+                            <p>Evaluación → Reflexión → Acción → Mejora</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <div class="section-title">Sugerencias para Evaluar y Apoyar la Diversidad</div>
+        <div class="slides-container">
+            <!-- Diapositiva 2 -->
+            <div class="slide">
+                <div class="slide-title">
+                    <i class="fas fa-users"></i> Reconociendo la Diversidad en el Aula
+                </div>
+                <div class="slide-content">
+                    <ul>
+                        <li>La evaluación debe considerar las emociones que despierta, los valores en juego, y los criterios de inclusión/exclusión</li>
+                        <li>Confiar en la capacidad de aprender de todos y cada uno de los alumnos</li>
+                        <li>Reconocer que lo que se etiqueta como "dificultades" son barreras para el aprendizaje y la participación</li>
+                    </ul>
+                    
+                    <div class="graphic-container">
+                        <div class="graphic">
+                            <i class="fas fa-universal-access"></i>
+                            <h3>Diversidad en el Aula</h3>
+                            <p>Evaluación adaptada a diferentes necesidades, estilos de aprendizaje y contextos</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Diapositiva 3 -->
+            <div class="slide">
+                <div class="slide-title">
+                    <i class="fas fa-tools"></i> Adecuar los Instrumentos de Evaluación
+                </div>
+                <div class="slide-content">
+                    <ul>
+                        <li>Necesidad de incorporar técnicas e instrumentos de evaluación diversos</li>
+                        <li>Considerar nivel educativo, contexto del aula, características de la escuela, contexto social y familiar, estilo de aprendizaje, intereses, motivaciones y nivel de competencia curricular</li>
+                        <li>No circunscribir la valoración a un solo instrumento, sustentarla en evidencias y notas registradas</li>
+                    </ul>
+                    
+                    <div class="graphic-container">
+                        <div class="graphic">
+                            <i class="fas fa-clipboard-list"></i>
+                            <h3>Herramientas de Evaluación</h3>
+                            <p>Diversidad de instrumentos para necesidades diversas</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Diapositiva 4 -->
+            <div class="slide">
+                <div class="slide-title">
+                    <i class="fas fa-search"></i> Identificar las Necesidades de la Diversidad
+                </div>
+                <div class="slide-content">
+                    <ul>
+                        <li>En preescolar: expedientes con observaciones y evidencias de procesos individuales</li>
+                        <li>Si un niño no logra un aprendizaje esperado, diseñar estrategias específicas de apoyo</li>
+                        <li>En primaria y secundaria: favorecer el diálogo entre docentes y estudiantes</li>
+                    </ul>
+                    
+                    <div class="graphic-container">
+                        <div class="graphic">
+                            <i class="fas fa-project-diagram"></i>
+                            <h3>Identificación de Necesidades</h3>
+                            <p>Observación → Análisis → Apoyo Personalizado</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Diapositiva 5 -->
+            <div class="slide">
+                <div class="slide-title">
+                    <i class="fas fa-chalkboard-teacher"></i> Modificar la Práctica Docente
+                </div>
+                <div class="slide-content">
+                    <ul>
+                        <li>Analizar la práctica si los alumnos no están aprendiendo</li>
+                        <li>Retroalimentación individual dialógica, estableciendo acuerdos de mejora</li>
+                        <li>Proporcionar devoluciones cualitativas y específicas</li>
+                    </ul>
+                    
+                    <div class="graphic-container">
+                        <div class="graphic">
+                            <i class="fas fa-comments"></i>
+                            <h3>Retroalimentación Formativa</h3>
+                            <p>Diálogo constructivo para la mejora continua</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Diapositiva 6 -->
+            <div class="slide">
+                <div class="slide-title">
+                    <i class="fas fa-user-check"></i> Favorecer la Autoevaluación
+                </div>
+                <div class="slide-content">
+                    <ul>
+                        <li>Especificar desde un inicio los criterios de evaluación</li>
+                        <li>Promover que los alumnos aprendan a aprender</li>
+                        <li>Construir ambientes que brinden retroalimentaciones formativas, reconozcan logros y guíen a establecer metas</li>
+                    </ul>
+                    
+                    <div class="graphic-container">
+                        <div class="graphic">
+                            <i class="fas fa-user-edit"></i>
+                            <h3>Autoevaluación del Desempeño</h3>
+                            <p>Reflexión → Reconocimiento → Mejora</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <div class="section-title">La Evaluación y la Comunicación de los Logros</div>
+        <div class="slides-container">
+            <!-- Diapositiva 7 -->
+            <div class="slide">
+                <div class="slide-title">
+                    <i class="fas fa-comments"></i> Comunicación como Herramienta
+                </div>
+                <div class="slide-content">
+                    <ul>
+                        <li>Permite capitalizar los beneficios de la evaluación para mejorar el aprendizaje</li>
+                        <li>Ir más allá de la retroalimentación tradicional</li>
+                        <li>Los resultados son un nuevo punto de partida para decisiones futuras</li>
+                    </ul>
+                    
+                    <div class="graphic-container">
+                        <div class="graphic">
+                            <i class="fas fa-exchange-alt"></i>
+                            <h3>Comunicación Bidireccional</h3>
+                            <p>Docente ↔ Estudiante ↔ Familia</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Diapositiva 8 -->
+            <div class="slide">
+                <div class="slide-title">
+                    <i class="fas fa-sync-alt"></i> Evaluación y Comunicación en el Enfoque Formativo
+                </div>
+                <div class="slide-content">
+                    <ul>
+                        <li>La evaluación no es un proceso independiente; sucede junto con la enseñanza y el aprendizaje</li>
+                        <li>Reflexionar qué, con qué propósitos y cómo comunicar</li>
+                        <li>La comunicación cumple sus fines cuando todos los actores comparten la meta de lograr aprendizajes</li>
+                    </ul>
+                    
+                    <div class="graphic-container">
+                        <div class="graphic">
+                            <i class="fas fa-network-wired"></i>
+                            <h3>Interconexión</h3>
+                            <p>Evaluación ⇄ Enseñanza ⇄ Aprendizaje ⇄ Comunicación</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Diapositiva 9 -->
+            <div class="slide">
+                <div class="slide-title">
+                    <i class="fas fa-balance-scale"></i> La Elaboración de Juicios
+                </div>
+                <div class="slide-content">
+                    <ul>
+                        <li>Juicios sobre logros se concretan en niveles de desempeño y calificaciones</li>
+                        <li>Responsabilidad social de los docentes al asignar niveles de desempeño</li>
+                        <li>Juicios deben ser responsables, respetuosos y equitativos, sustentados en evidencias</li>
+                    </ul>
+                    
+                    <div class="graphic-container">
+                        <div class="graphic">
+                            <i class="fas fa-gavel"></i>
+                            <h3>Responsabilidad Ética</h3>
+                            <p>Juicios basados en evidencias, no prejuicios</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Diapositiva 10 -->
+            <div class="slide">
+                <div class="slide-title">
+                    <i class="fas fa-book"></i> Cartilla de Educación Básica
+                </div>
+                <div class="slide-content">
+                    <ul>
+                        <li>Documento de registro y comunicación de resultados de evaluaciones finales</li>
+                        <li>Lo consignado es solo una parte de la información que debe comunicarse</li>
+                        <li>Funciones: registro, comunicación e historial del desempeño</li>
+                    </ul>
+                    
+                    <div class="graphic-container">
+                        <div class="graphic">
+                            <i class="fas fa-file-alt"></i>
+                            <h3>Instrumento de Comunicación</h3>
+                            <p>Registro + Comunicación + Historial</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Diapositiva 11 -->
+            <div class="slide">
+                <div class="slide-title">
+                    <i class="fas fa-people-arrows"></i> Comunicación con Alumnos y Familias
+                </div>
+                <div class="slide-content">
+                    <p><strong>Con alumnos:</strong></p>
+                    <ul>
+                        <li>Comunicación motivadora y orientadora para fomentar autorregulación</li>
+                        <li>Valorar aprendizajes, explicar brechas, establecer acuerdos de mejora</li>
+                    </ul>
+                    
+                    <p><strong>Con familias:</strong></p>
+                    <ul>
+                        <li>Iniciar con reconocimiento de logros</li>
+                        <li>Compartir información sobre motivación y autoestima</li>
+                        <li>Comunicación constante, no solo ante dificultades</li>
+                    </ul>
+                    
+                    <div class="graphic-container">
+                        <div class="graphic">
+                            <i class="fas fa-handshake"></i>
+                            <h3>Comunicación Efectiva</h3>
+                            <p>Diálogo constante con todos los actores</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Diapositiva 12 -->
+            <div class="slide">
+                <div class="slide-title">
+                    <i class="fas fa-comment-dots"></i> Aprender a Comunicar
+                </div>
+                <div class="slide-content">
+                    <ul>
+                        <li>La comunicación debe generar retroalimentación para evaluador y evaluado</li>
+                        <li>Escuchar a alumnos y padres es fuente de información para ajustes</li>
+                        <li>La evaluación impulsa el mejoramiento de la enseñanza</li>
+                    </ul>
+                    
+                    <div class="graphic-container">
+                        <div class="graphic">
+                            <i class="fas fa-comments"></i>
+                            <h3>Ciclo de Aprendizaje</h3>
+                            <p>Evaluación → Comunicación → Mejora</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <div class="conclusion-section">
+            <h2>Conclusiones</h2>
+            <div class="conclusion-content">
+                <div class="conclusion-card">
+                    <h3><i class="fas fa-star"></i> Evaluación Formativa</h3>
+                    <p>Esencial para una educación que reconoce y valora la diversidad de cada estudiante, permitiendo adaptaciones personalizadas que responden a necesidades específicas.</p>
+                </div>
+                
+                <div class="conclusion-card">
+                    <h3><i class="fas fa-comments"></i> Comunicación Efectiva</h3>
+                    <p>Potencia la autorregulación de los alumnos y la mejora continua de la práctica docente. La comunicación constante y bidireccional es clave para el éxito educativo.</p>
+                </div>
+                
+                <div class="conclusion-card">
+                    <h3><i class="fas fa-balance-scale"></i> Ética y Responsabilidad</h3>
+                    <p>Fundamentales al emitir juicios sobre el desempeño estudiantil. Los docentes deben basar sus evaluaciones en evidencias válidas y confiables.</p>
+                </div>
+                
+                <div class="conclusion-card">
+                    <h3><i class="fas fa-hands-helping"></i> Colaboración</h3>
+                    <p>La cooperación entre alumnos, docentes, familias y autoridades es imprescindible para garantizar trayectorias de aprendizaje exitosas e inclusivas.</p>
+                </div>
+            </div>
+        </div>
+        
+        <footer>
+            <p>Conferencia: Evaluación, Diversidad y Comunicación en el Proceso de Aprendizaje</p>
+            <p>© 2025 - Todos los derechos reservados</p>
+        </footer>
+    </div>
+</body>
+</html>
